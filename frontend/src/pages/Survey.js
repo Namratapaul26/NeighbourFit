@@ -70,28 +70,36 @@ const Survey = () => {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen bg-background-50 py-12">
+      {/* Progress Bar */}
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="h-2 rounded-full bg-neutral-100 overflow-hidden">
+          <div className="h-2 bg-gradient-to-r from-primary-500 to-accent-500 w-full animate-pulse"></div>
+        </div>
+      </div>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-extrabold text-primary-600 mb-4 flex items-center justify-center gap-2">
+            <svg className="w-8 h-8 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m-7-7h14" /></svg>
             Lifestyle Preference Survey
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-neutral-600">
             Tell us about your lifestyle and priorities to find your ideal neighborhood
           </p>
         </div>
 
-        <div className="card">
+        <div className="card p-8">
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
             {({ values, setFieldValue }) => (
-              <Form className="space-y-8">
+              <Form className="space-y-10">
                 {/* Age Group */}
                 <div>
-                  <label htmlFor="ageGroup" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="ageGroup" className="block text-lg font-semibold text-primary-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m-7-7h14" /></svg>
                     Age Group
                   </label>
                   <Field as="select" id="ageGroup" name="ageGroup" className="input-field">
@@ -105,7 +113,8 @@ const Survey = () => {
 
                 {/* Occupation */}
                 <div>
-                  <label htmlFor="occupation" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="occupation" className="block text-lg font-semibold text-primary-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6" /></svg>
                     Occupation
                   </label>
                   <Field as="select" id="occupation" name="occupation" className="input-field">
@@ -119,7 +128,8 @@ const Survey = () => {
 
                 {/* Living Type */}
                 <div>
-                  <label htmlFor="livingType" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="livingType" className="block text-lg font-semibold text-primary-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-3-3h-4a3 3 0 00-3 3v2h5z" /></svg>
                     Living Type
                   </label>
                   <Field as="select" id="livingType" name="livingType" className="input-field">
@@ -133,7 +143,8 @@ const Survey = () => {
 
                 {/* Neighborhood Vibe */}
                 <div>
-                  <label htmlFor="vibe" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="vibe" className="block text-lg font-semibold text-primary-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m-7-7h14" /></svg>
                     Preferred Neighborhood Vibe
                   </label>
                   <Field as="select" id="vibe" name="vibe" className="input-field">
@@ -147,22 +158,23 @@ const Survey = () => {
 
                 {/* Priorities Sliders */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-lg font-semibold text-primary-700 mb-2 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 1.343-3 3 0 1.657 1.343 3 3 3s3-1.343 3-3c0-1.657-1.343-3-3-3zm0 0V4m0 7v7m-7-7h14" /></svg>
                     Rate the importance of each factor (1 = Not Important, 5 = Very Important)
                   </label>
                   <div className="space-y-4">
                     {priorities.map((p) => (
                       <div key={p.name} className="flex items-center gap-4">
-                        <span className="w-32">{p.label}</span>
+                        <span className="w-32 text-neutral-700 font-medium">{p.label}</span>
                         <Field
                           type="range"
                           name={p.name}
                           min={1}
                           max={5}
                           step={1}
-                          className="flex-1 accent-primary-600"
+                          className="flex-1 accent-primary-500 focus:accent-accent-500 h-2 rounded-full bg-neutral-100"
                         />
-                        <span className="w-8 text-center">{values[p.name]}</span>
+                        <span className="w-8 text-center font-bold text-primary-600">{values[p.name]}</span>
                       </div>
                     ))}
                   </div>
@@ -176,7 +188,7 @@ const Survey = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary text-lg px-12 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary text-xl px-12 py-4 rounded-full shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Finding Neighborhoods...' : 'Find My Neighborhood'}
                   </button>
