@@ -1,11 +1,9 @@
 # NeighborFit - Neighborhood Matching Platform
 
 ## Assignment Details
-**Course:** CS 201 - Data Structures and Algorithms  
 **Assignment:** Final Project - Full Stack Web Application  
-**Student:** [Your Name]  
-**Roll Number:** [Your Roll Number]  
-**Submission Date:** [Date]
+**Student:** Namrata Paul  
+**Registration Number:** 12216707  
 
 ## Project Overview
 NeighborFit is a comprehensive neighborhood matching platform that helps users find their ideal living environment based on lifestyle preferences, budget, and priorities. The application uses machine learning algorithms to match users with suitable neighborhoods and properties.
