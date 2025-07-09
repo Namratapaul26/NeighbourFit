@@ -55,10 +55,12 @@ const Survey = () => {
     nightlife: 3,
   };
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
   const handleSubmit = async (values, { setSubmitting }) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post('/api/survey', values);
+      const response = await axios.post(`${API_BASE_URL}/api/survey`, values);
       navigate('/results', { state: { results: response.data } });
     } catch (error) {
       console.error('Error submitting survey:', error);

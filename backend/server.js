@@ -13,6 +13,7 @@ const Survey = require("./models/Survey");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || "http://localhost:8000";
 
 // Trust proxy for rate limiting
 app.set("trust proxy", 1);
@@ -59,7 +60,7 @@ app.post("/api/submit", async (req, res) => {
 
     // Call Python service for matching
     const matchRes = await axios.post(
-      "http://localhost:8000/match",
+      `${PYTHON_SERVICE_URL}/match`,
       surveyData
     );
     res.json({ success: true, results: matchRes.data });
@@ -215,7 +216,7 @@ app.post("/api/survey", async (req, res) => {
     await survey.save();
     // Call Python service for neighborhood matching
     const matchRes = await axios.post(
-      "http://localhost:8000/match",
+      `${PYTHON_SERVICE_URL}/match`,
       surveyData
     );
     res.json(matchRes.data);

@@ -14,9 +14,11 @@ const Dashboard = () => {
     // eslint-disable-next-line
   }, []);
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
   const fetchAnalytics = async () => {
     try {
-      const response = await axios.get('/api/analytics');
+      const response = await axios.get(`${API_BASE_URL}/api/analytics`);
       setAnalytics(response.data);
     } catch (error) {
       setAnalytics(null);
