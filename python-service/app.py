@@ -153,5 +153,34 @@ def match():
 def home():
     return jsonify({'status': 'ok', 'service': 'Property Matching Service', 'version': '1.0'})
 
+@app.route('/health', methods=['GET'])
+def health():
+    try:
+        # Check if data.csv exists
+        if os.path.exists(DATA_CSV):
+            df = pd.read_csv(DATA_CSV)
+            return jsonify({
+                'status': 'ok',
+                'service': 'Property Matching Service',
+                'data_file': 'found',
+                'properties_count': len(df),
+                'version': '1.0'
+            })
+        else:
+            return jsonify({
+                'status': 'error',
+                'service': 'Property Matching Service',
+                'data_file': 'not_found',
+                'error': f'data.csv not found at {DATA_CSV}',
+                'version': '1.0'
+            })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'service': 'Property Matching Service',
+            'error': str(e),
+            'version': '1.0'
+        })
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True) 

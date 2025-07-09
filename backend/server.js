@@ -88,9 +88,32 @@ app.post("/api/submit", async (req, res) => {
 // Analytics for dashboard
 app.get("/api/analytics", async (req, res) => {
   try {
-    // Read data.csv from python-service directory
+    // Try to read data.csv from python-service directory
     const dataPath = path.join(__dirname, "../python-service/data.csv");
     const results = [];
+    
+    // Check if file exists
+    if (!fs.existsSync(dataPath)) {
+      console.log("data.csv not found at:", dataPath);
+      // Return basic analytics without property data
+      const surveys = await Survey.find({});
+      const surveyCount = surveys.length;
+      
+      res.json({
+        totalProperties: 0,
+        avgPrice: 0,
+        avgArea: 0,
+        topPropertyType: "N/A",
+        topCities: [],
+        surveyCount,
+        avgPriorities: {},
+        topVibe: "N/A",
+        topDisappointments: [],
+        interestTrend: []
+      });
+      return;
+    }
+    
     fs.createReadStream(dataPath)
       .pipe(csv())
       .on("data", (row) => {
@@ -212,17 +235,45 @@ app.get("/api/health", (req, res) => {
 app.post("/api/survey", async (req, res) => {
   try {
     const surveyData = req.body;
+    console.log("Received survey data:", surveyData);
+    
+    // Save to MongoDB
     const survey = new Survey(surveyData);
     await survey.save();
+    console.log("Survey saved to MongoDB");
+    
     // Call Python service for neighborhood matching
+    console.log("Calling Python service at:", PYTHON_SERVICE_URL);
     const matchRes = await axios.post(
       `${PYTHON_SERVICE_URL}/match`,
-      surveyData
+      surveyData,
+      {
+        timeout: 10000, // 10 second timeout
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     );
+    console.log("Python service response received");
     res.json(matchRes.data);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, error: "Server error" });
+    console.error("Survey submission error:", err);
+    if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+      res.status(500).json({ 
+        success: false, 
+        error: "Python service is not available. Please try again later." 
+      });
+    } else if (err.response) {
+      res.status(500).json({ 
+        success: false, 
+        error: `Python service error: ${err.response.data?.error || err.message}` 
+      });
+    } else {
+      res.status(500).json({ 
+        success: false, 
+        error: "Server error. Please try again." 
+      });
+    }
   }
 });
 

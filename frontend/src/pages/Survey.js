@@ -60,11 +60,23 @@ const Survey = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     setIsSubmitting(true);
     try {
+      console.log('Submitting survey to:', `${API_BASE_URL}/api/survey`);
       const response = await axios.post(`${API_BASE_URL}/api/survey`, values);
+      console.log('Survey response:', response.data);
       navigate('/results', { state: { results: response.data } });
     } catch (error) {
       console.error('Error submitting survey:', error);
-      alert('There was an error submitting your preferences. Please try again.');
+      let errorMessage = 'There was an error submitting your preferences. Please try again.';
+      
+      if (error.response?.data?.error) {
+        errorMessage = error.response.data.error;
+      } else if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
+        errorMessage = 'Cannot connect to the server. Please check your internet connection and try again.';
+      } else if (error.response?.status === 500) {
+        errorMessage = 'Server error. Please try again later.';
+      }
+      
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
       setSubmitting(false);

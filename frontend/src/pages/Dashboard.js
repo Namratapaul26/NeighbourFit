@@ -18,9 +18,12 @@ const Dashboard = () => {
 
   const fetchAnalytics = async () => {
     try {
+      console.log('Fetching analytics from:', `${API_BASE_URL}/api/analytics`);
       const response = await axios.get(`${API_BASE_URL}/api/analytics`);
+      console.log('Analytics response:', response.data);
       setAnalytics(response.data);
     } catch (error) {
+      console.error('Error fetching analytics:', error);
       setAnalytics(null);
     } finally {
       setLoading(false);

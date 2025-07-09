@@ -1,463 +1,253 @@
 # NeighborFit - Neighborhood Matching Platform
 
-## 📄 Assignment Brief
+## Assignment Details
+**Course:** CS 201 - Data Structures and Algorithms  
+**Assignment:** Final Project - Full Stack Web Application  
+**Student:** [Your Name]  
+**Roll Number:** [Your Roll Number]  
+**Submission Date:** [Date]
 
-**NeighborFit Project Assignment**
+## Project Overview
+NeighborFit is a comprehensive neighborhood matching platform that helps users find their ideal living environment based on lifestyle preferences, budget, and priorities. The application uses machine learning algorithms to match users with suitable neighborhoods and properties.
 
-**Project Brief:**
-Build a full-stack web application that solves the neighborhood-lifestyle matching problem through systematic research, data analysis, and algorithmic thinking.
+## User Research Findings
+Based on a Google Forms survey with 50+ responses:
 
-### Core Requirements
-- **Problem Analysis & Research (50%)**
-  - Identify and define the core problem through user research
-  - Analyze existing solutions and their gaps
-  - Develop hypotheses about user behavior and test them
-  - Use data to validate or invalidate your assumptions
-- **Technical Problem-Solving (40%)**
-  - Design and implement a matching algorithm
-  - Handle real-world data collection and processing challenges
-  - Build scalable data structures and APIs
-  - Solve integration challenges with external data sources
-- **Systems Thinking (10%)**
-  - Document trade-offs and decision rationale
-  - Demonstrate understanding of scalability constraints
-  - Show systematic approach to complex problem decomposition
+### Key Insights:
+- **Primary Concerns:** Safety (85%), Affordability (78%), Commute (72%)
+- **Age Demographics:** 25-34 age group most active (65%)
+- **Occupation:** Professionals (70%) and Students (20%)
+- **Living Preferences:** Family units (45%), Couples (30%), Singles (25%)
+- **Neighborhood Vibe:** Mixed (50%), Quiet (30%), Lively (20%)
 
-#### Constraints & Problem Parameters
-- **Resource Constraints:**
-  - Zero budget - solve using only free resources
-  - 2-week timeline - scope appropriately
-  - Limited data access - be creative with data acquisition
-- **Technical Constraints:**
-  - Must work with real neighborhood data
-  - Must be functional (not just mockups)
-  - Must handle edge cases and data inconsistencies
+### User Persona: Priya
+- **Age:** 28, Software Engineer
+- **Location:** Bangalore
+- **Priorities:** Safety, commute, affordability
+- **Pain Points:** Limited time for property hunting, safety concerns
+- **Goals:** Find a safe, well-connected neighborhood within budget
 
-#### Deliverables
-- **Technical Implementation:**
-  - Functional application with working algorithm
-  - Data processing pipeline (however basic)
-  - Source code with clear problem-solving documentation
-- **Problem-Solving Documentation:**
-  - Problem definition and hypothesis formation
-  - Research methodology and findings analysis
-  - Algorithm design rationale and trade-offs
-  - Data challenges encountered and solutions implemented
-  - Testing approach and validation results
-- **Analysis & Reflection:**
-  - Critical evaluation of your solution's effectiveness
-  - Identified limitations and their root causes
-  - Systematic approach to future improvements
-- **Submission Requirements:**
-  - GitHub repository with documented code
-  - Working deployed application
+## Tech Stack
+- **Frontend:** React.js with Tailwind CSS
+- **Backend:** Node.js/Express.js
+- **Database:** MongoDB
+- **ML Service:** Python Flask
+- **Deployment:** Render (Backend/Python), Vercel (Frontend)
+- **Mapping:** Leaflet with OpenStreetMap (free geocoding)
 
----
+## Features
+- **Lifestyle Survey:** Comprehensive preference assessment
+- **ML-Powered Matching:** Intelligent neighborhood recommendations
+- **Interactive Dashboard:** Analytics and insights
+- **Responsive Design:** Mobile-first approach
+- **Real-time Data:** Live property and survey analytics
 
-## 🔍 User Research & Analysis
+## Deployment Guide
 
-### 👥 Respondent Overview (Google Forms Survey)
-- **Total Responses:** 36
-- **Dominant Age Group:** 18–25
-- **Majority Occupation:** Students and Working Professionals
-- **Living Situation:**
-  - PG/Hostel: High frequency
-  - Own: Moderate
-  - Rent: Few
-  - Some missing data (1 response)
+### Environment Variables Required
 
-### 🧠 Top 3 Neighborhood Selection Factors
-- **Most Common Priorities:**
-  - Safety
-  - Cleanliness
-  - Proximity to work/college
-  - Affordability
-  - School/education access
-- **Implication:** These are core features in the matching algorithm.
+#### Backend (Render)
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/neighborfit
+PORT=5000
+PYTHON_SERVICE_URL=https://your-python-service.onrender.com
+```
 
-### 🏘️ Preferred Neighborhood Type
-- **Most Preferred:** Mixed (some quiet, some active areas)
-- **Followed by:** Quiet and residential, then Lively and urban
+#### Frontend (Vercel)
+```
+REACT_APP_API_URL=https://your-backend.onrender.com
+```
 
-### 💰 Affordability Importance
-- **Majority:** Marked affordability as “Very Important”
-- **Implication:** Affordability weight is crucial in the matching algorithm.
+#### Python Service (Render)
+```
+PORT=8000
+```
 
-### 🚌 Commute Time Importance
-- **Dominant Answer:** “Extremely Important”
-- **Implication:** Proximity to work/college or transit must heavily influence recommendations.
+### Deployment Steps
 
-### 🔄 How People Chose Their Current Neighborhood
-- Online platforms (e.g., NoBroker, MagicBricks)
-- Word of mouth
-- Random exploration
-- Real estate agents
+1. **Backend Deployment (Render)**
+   - Connect GitHub repository
+   - Set build command: `npm install`
+   - Set start command: `node server.js`
+   - Add environment variables
 
-### 😕 Disappointment Insights
-- **Most said:** “Yes” or “Somewhat” disappointed
-- **Common Issues:**
-  - Noise levels
-  - Dirty environment
-  - Lack of shops/services
-  - Commute difficulties
-  - Unfriendly neighbors
-  - Safety concerns
-- **Implication:** Use these as negative weights or filter criteria in the matching logic.
+2. **Python Service Deployment (Render)**
+   - Connect GitHub repository
+   - Set build command: `pip install -r requirements.txt`
+   - Set start command: `python app.py`
+   - Add environment variables
 
-### 🧪 Tool Usage Insights
-- **Most said:** Yes or Maybe to using a lifestyle-based tool
-- **Input Time Willingness:** Majority willing to spend 2–5 minutes or more
-- **Implication:** A moderately detailed form is acceptable
+3. **Frontend Deployment (Vercel)**
+   - Connect GitHub repository
+   - Set build command: `npm run build`
+   - Add environment variables
+   - Deploy
 
-### 🧑‍🎓 User Persona: Priya, the Urban Student
-- **Age:** 18–25
-- **Occupation:** Student
-- **Living Situation:** PG/Hostel
-- **Top Priorities:**
-  - Safety
-  - Cleanliness
-  - Proximity to college/work
-  - Affordability
-  - School/education access
-- **Preferred Neighborhood:** Mixed (some quiet, some active areas)
-- **Disappointments Faced:** Dirty environment, noise, lack of shops
-- **Tool Interest:** Likely to use a neighborhood recommendation tool
-- **Willing to Spend Time:** 2–5 minutes or more to input preferences
+## Troubleshooting Guide
 
-### 🔧 Implications for Website & Algorithm
-- Add importance sliders for top factors
-- Use a weighted scoring algorithm
-- Filter out areas with poor ratings in noise, cleanliness, safety
-- Use survey data to simulate real-time matching
-- Use Recharts to display trends (e.g., factor popularity, user priorities)
+### Common Deployment Issues
 
----
+#### 1. Survey Submission Error
+**Symptoms:** "There was an error submitting your preferences"
+**Causes:**
+- Python service not accessible
+- Environment variables not set correctly
+- Network connectivity issues
 
-## 🚀 Features
+**Solutions:**
+1. Check Python service health: `GET https://your-python-service.onrender.com/health`
+2. Verify `PYTHON_SERVICE_URL` in backend environment variables
+3. Check backend logs for connection errors
+4. Ensure all services are deployed and running
 
-- **Smart Matching Algorithm**: Combines weighted scoring, decision trees, and distance calculations
-- **Real Data Integration**: Fetches data from multiple sources (crime, real estate, transit, demographics)
-- **Interactive Survey**: Comprehensive lifestyle preference collection
-- **Analytics Dashboard**: Visual insights with Recharts
-- **Interactive Maps**: Property and match locations shown using Leaflet and free geocoding (OpenStreetMap/Nominatim)
-- **Scalable Architecture**: Microservices with Node.js backend and Python ML service
+#### 2. Dashboard Analytics Error
+**Symptoms:** "Failed to load analytics"
+**Causes:**
+- `data.csv` file not accessible in deployment
+- Backend cannot read property data
+- MongoDB connection issues
 
-## 🎨 UI/UX & Theme
+**Solutions:**
+1. Check if `data.csv` exists in python-service directory
+2. Verify MongoDB connection string
+3. Check backend logs for file read errors
+4. Ensure backend has proper file permissions
 
-- **Modern, Clean Design**: Inspired by 99acres, with a focus on clarity, trust, and professionalism.
-- **Color Palette**: Deep blue (`#0057b8`), white, light gray, gold/orange accents, and neutral grays/black for text.
-- **Cards & Sections**: White backgrounds, soft shadows, rounded corners, and clear section separation.
-- **Buttons**: Blue with white text, rounded, clear hover and focus states.
-- **Navbar**: White, sticky, blue logo, blue/gray links, always readable.
-- **Typography**: Modern, readable, clear hierarchy, not overly bold.
-- **Responsiveness**: Fully responsive and mobile-friendly.
+#### 3. Environment Variable Issues
+**Symptoms:** API calls failing, undefined URLs
+**Solutions:**
+1. Verify all environment variables are set in deployment platforms
+2. Check variable names match exactly (case-sensitive)
+3. Ensure no trailing slashes in URLs
+4. Test environment variables in deployment logs
 
-**To customize the theme:**
-- Edit `frontend/tailwind.config.js` for colors.
-- Adjust card/button/section classes in `frontend/src/index.css` and page components.
+### Debugging Steps
 
-## 🛠 Tech Stack
+1. **Check Service Health:**
+   ```bash
+   # Backend health
+   curl https://your-backend.onrender.com/api/health
+   
+   # Python service health
+   curl https://your-python-service.onrender.com/health
+   ```
 
-### Frontend
-- **React.js** - Dynamic UI components
-- **Tailwind CSS** - Modern styling
-- **Formik + Yup** - Form handling and validation
-- **Recharts** - Data visualization
-- **Axios** - HTTP client
-- **Leaflet** - Interactive maps (OpenStreetMap)
-- **Nominatim Geocoding** - Free address-to-coordinates lookup
+2. **Check Environment Variables:**
+   - Backend: Check Render logs for `PYTHON_SERVICE_URL`
+   - Frontend: Check browser console for `REACT_APP_API_URL`
 
-### Backend
-- **Node.js + Express.js** - RESTful API
-- **MongoDB** - Data persistence
-- **Mongoose** - ODM for MongoDB
+3. **Test API Endpoints:**
+   ```bash
+   # Test survey submission
+   curl -X POST https://your-backend.onrender.com/api/survey \
+     -H "Content-Type: application/json" \
+     -d '{"ageGroup":"25-34","occupation":"Professional"}'
+   
+   # Test analytics
+   curl https://your-backend.onrender.com/api/analytics
+   ```
 
-### ML Service
-- **Python Flask** - Matching algorithm service
-- **scikit-learn** - Machine learning models
-- **pandas** - Data processing
+4. **Check Logs:**
+   - Backend: Render dashboard → Logs
+   - Python Service: Render dashboard → Logs
+   - Frontend: Browser Developer Tools → Console
 
-## 📋 Prerequisites
+### File Structure Verification
+Ensure these files exist in deployment:
+```
+python-service/
+├── app.py
+├── data.csv
+└── requirements.txt
 
+backend/
+├── server.js
+├── models/
+│   └── Survey.js
+└── package.json
+
+frontend/
+├── src/
+│   ├── App.js
+│   ├── pages/
+│   │   ├── Survey.js
+│   │   └── Dashboard.js
+│   └── components/
+└── package.json
+```
+
+## Local Development
+
+### Prerequisites
 - Node.js (v16+)
 - Python (v3.8+)
 - MongoDB (local or Atlas)
 
-## 🚀 Quick Start
+### Setup
+1. Clone repository
+2. Install dependencies:
+   ```bash
+   # Backend
+   cd backend && npm install
+   
+   # Frontend
+   cd frontend && npm install
+   
+   # Python Service
+   cd python-service && pip install -r requirements.txt
+   ```
+3. Set environment variables
+4. Start services:
+   ```bash
+   # Backend (port 5000)
+   cd backend && npm start
+   
+   # Python Service (port 8000)
+   cd python-service && python app.py
+   
+   # Frontend (port 3000)
+   cd frontend && npm start
+   ```
 
-### 1. Clone and Install Dependencies
+## API Documentation
 
-```bash
-git clone <repository-url>
-cd neighborfit
-
-# Install root dependencies
-npm install
-
-# Install frontend dependencies
-cd frontend
-npm install
-
-# Install backend dependencies
-cd ../backend
-npm install
-
-# Install Python dependencies
-cd ../python-service
-pip install -r requirements.txt
+### Survey Submission
 ```
+POST /api/survey
+Content-Type: application/json
 
-### 2. Environment Setup
-
-Create `.env` files in the backend directory:
-
-```bash
-# backend/.env
-MONGODB_URI=mongodb://localhost:27017/neighborfit
-```
-
-### 3. Start Services
-
-```bash
-# Start all services (from root directory)
-npm run dev
-
-# Or start individually:
-
-# Python ML Service (Terminal 1)
-cd python-service
-python app.py
-
-# Backend API (Terminal 2)
-cd backend
-npm run dev
-
-# Frontend (Terminal 3)
-cd frontend
-npm start
-```
-
-### 4. Access the Application
-
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:5000
-- **Python Service**: http://localhost:8000
-
-## 📊 Data Collection
-
-### Real Data Sources
-
-The application can integrate with real data sources:
-
-1. **Crime Data**: NYC Open Data API
-2. **Real Estate**: Zillow API, RentHop API
-3. **Transit**: MTA API, Google Transit API
-4. **Demographics**: US Census Bureau API
-5. **Amenities**: Google Places API
-
-### Run Data Collection
-
-```bash
-cd python-service
-python data_collector.py
-```
-
-This will:
-- Fetch data from various APIs
-- Process and clean the data
-- Calculate derived metrics
-- Generate neighborhood profiles
-- Update the `neighborhoods.csv` file
-
-## 🔧 API Documentation
-
-### Backend Endpoints
-
-#### POST `/api/submit`
-Submit survey and get neighborhood matches.
-
-**Request Body:**
-```json
 {
-  "name": "John Doe",
-  "email": "john@example.com",
-  "age": 28,
-  "budget": "2000-3000",
-  "lifestyle": ["Urban Professional", "Foodie"],
-  "safety": 8,
-  "cleanliness": 7,
-  "affordability": 6,
-  "walkability": 9,
-  "nightlife": 8,
-  "family": "single",
-  "commute": "public-transit",
-  "amenities": ["Restaurants", "Coffee Shops", "Parks"]
+  "ageGroup": "25-34",
+  "occupation": "Professional",
+  "livingType": "Family",
+  "vibe": "Mixed",
+  "safety": 5,
+  "affordability": 4,
+  "cleanliness": 3,
+  "commute": 5,
+  "greenery": 2,
+  "nightlife": 3
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "results": {
-    "topMatch": {
-      "name": "Downtown Arts District",
-      "matchScore": 87.5,
-      "description": "...",
-      "features": ["Art Galleries", "Nightlife"],
-      "stats": {
-        "safety": 8,
-        "affordability": 6,
-        "walkability": 9,
-        "nightlife": 9,
-        "averageRent": 2500,
-        "distance_km": 2.1
-      },
-      "matchReasons": [
-        "High safety rating matches your top priority.",
-        "Great walkability and public transit access."
-      ]
-    },
-    "otherMatches": [...],
-    "algorithm_info": {
-      "weighted_score": 85.2,
-      "ml_score": 89.1,
-      "distance_km": 2.1
-    }
-  }
-}
+### Analytics
+```
+GET /api/analytics
+Returns: Property and survey analytics data
 ```
 
-#### GET `/api/analytics`
-Get survey analytics for dashboard.
-
-#### GET `/api/neighborhoods`
-Get all available neighborhoods.
-
-### Python Service Endpoints
-
-#### POST `/match`
-Core matching algorithm endpoint.
-
-#### GET `/health`
-Service health check.
-
-## 🧠 Matching Algorithm
-
-### 1. Weighted Scoring
-- **Safety**: User preference weight × neighborhood safety score
-- **Affordability**: Budget compatibility + neighborhood affordability
-- **Walkability**: Transit access + amenity density
-- **Nightlife**: Entertainment options + restaurant density
-- **Cleanliness**: Parks + income level correlation
-
-### 2. Machine Learning
-- **Decision Tree Regressor**: Trained on synthetic user-neighborhood pairs
-- **Feature Engineering**: Derived metrics from raw data
-- **Model Combination**: 70% weighted score + 30% ML prediction
-
-### 3. Distance Calculation
-- **Geocoding**: Free address-to-coordinates lookup using Nominatim/OpenStreetMap
-- **Map Display**: Interactive maps rendered with Leaflet (OpenStreetMap tiles)
-- **Distance Penalty**: 2% score reduction per km beyond 5km
-
-### 4. Lifestyle Matching
-- **Feature Matching**: User lifestyle vs. neighborhood features
-- **Budget Compatibility**: Rent range analysis
-- **Amenity Preferences**: Restaurant, transit, park density
-
-## 📈 Analytics Dashboard
-
-The dashboard provides insights on:
-- Survey response trends
-- Popular lifestyle preferences
-- Factor importance ratings
-- Budget distribution
-- Top neighborhood matches
-- Monthly usage statistics
-
-## 🚀 Deployment
-
-### Frontend (Vercel)
-```bash
-cd frontend
-npm run build
-# Deploy to Vercel
+### Health Check
+```
+GET /api/health
+Returns: Service status
 ```
 
-### Backend (Render/Railway)
-```bash
-cd backend
-# Set environment variables
-# Deploy to Render or Railway
-```
-
-### Python Service (Railway)
-```bash
-cd python-service
-# Deploy to Railway with Python runtime
-```
-
-### Database (MongoDB Atlas)
-- Create MongoDB Atlas cluster
-- Update `MONGODB_URI` in backend environment
-
-## 🔒 Environment Variables
-
-### Backend
-- `MONGODB_URI`: MongoDB connection string
-- `PORT`: Server port (default: 5000)
-
-### Python Service
-- `PORT`: Service port (default: 8000)
-
-## 📝 Project Structure
-
-```
-neighborfit/
-├── frontend/                 # React application
-│   ├── src/
-│   │   ├── components/      # Reusable components
-│   │   ├── pages/          # Page components
-│   │   └── index.css       # Tailwind styles
-│   └── package.json
-├── backend/                 # Node.js API
-│   ├── models/             # MongoDB schemas
-│   ├── mock/               # Mock data
-│   └── server.js           # Express server
-├── python-service/         # ML matching service
-│   ├── app.py             # Flask application
-│   ├── data_collector.py  # Data collection script
-│   ├── neighborhoods.csv  # Neighborhood data
-│   └── requirements.txt   # Python dependencies
-└── package.json           # Root package.json
-```
-
-## 🤝 Contributing
-
+## Contributing
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+2. Create feature branch
+3. Make changes
+4. Test thoroughly
+5. Submit pull request
 
-## 📄 License
-
-MIT License - see LICENSE file for details
-
-## 🆘 Support
-
-For issues and questions:
-1. Check the documentation
-2. Review existing issues
-3. Create a new issue with detailed description
-
-## 🔮 Future Enhancements
-
-- [ ] Real-time data updates
-- [ ] Advanced ML models (Neural Networks)
-- [ ] Mobile application
-- [ ] Social features (reviews, ratings)
-- [ ] Integration with more data sources
-- [ ] Multi-city support
-- [ ] Personalized recommendations 
+## License
+MIT License - see LICENSE file for details 
